@@ -1,0 +1,69 @@
+
+<h3><label>{{config.title}}</label></h3>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th><input type="checkbox" ng-click="selectAll()"/></th>
+			#FIELD_HEADER_LIST#
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in opt.list track by $index">
+			<td><input type="checkbox" ng-model="item.selected" ng-init="item.selected=false"/></td>
+			#FIELD_DATA_LIST#
+			<td>
+				<button class="btn btn-default" ng-click="edit(item)">수정</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div>
+	<span class="pull-right">
+		<button class="btn btn-default" ng-click="add()">등록</button>
+		<button class="btn btn-default" ng-click="removeSelected()">선택삭제</button>
+	</span>
+</div>
+
+<div style="text-align:center">
+	 <ul uib-pagination total-items="opt.total" ng-model="opt.currentPage" items-per-page="opt.num" ng-change="reload()"></ul>
+</div>
+
+
+
+
+<script type="text/ng-template" id="#MODAL_PREFIX#-edit-modal.html">
+	<div class="modal-header">
+		<h3 class="modal-title">{{config.title}} 수정</h3>
+	</div>
+	<div class="modal-body">
+		#FORM#
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-default" type="button" ng-click="submit()">
+			수정
+		</button>
+		<button class="btn btn-default" type="button" ng-click="cancel()">
+			취소
+		</button>
+	</div>
+</script>
+
+
+<script type="text/ng-template" id="#MODAL_PREFIX#-add-modal.html">
+	<div class="modal-header">
+		<h3 class="modal-title">{{config.title}} 추가</h3>
+	</div>
+	<div class="modal-body">
+		#FORM#
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-default" type="button" ng-click="submit()">
+			추가
+		</button>
+		<button class="btn btn-default" type="button" ng-click="cancel()">
+			취소
+		</button>
+	</div>
+</script>
