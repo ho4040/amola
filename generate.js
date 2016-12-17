@@ -1,4 +1,3 @@
-
 var os = require('os');
 var fs = require('fs');
 var contents = fs.readFileSync('api.txt').toString();
