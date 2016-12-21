@@ -1,31 +1,33 @@
 //amola_run.js
-module.exports = function( config ) {
-
-	//Check required values.
-	if(!config.specificationFilePath)
-		config.specificationFilePath = "specification.amola";
-
-	if(!config.intermediateFilePath)
-		config.intermediateFilePath = "amloa_intermediate.json";
-
-	if(!config.templates)
-		config.templates = {};
-	if(!config.templates.create)
-		config.templates.create = 'templates/c.php';
-	if(!config.templates.read)
-		config.templates.read = 'templates/r.php';
-	if(!config.templates.update)
-		config.templates.update = 'templates/u.php';
-	if(!config.templates.delete)
-		config.templates.delete = 'templates/d.php';
-
-	if(!config.outputPath)
-		config.outputPath = "./gen";
+module.exports = function( targetPath ) {
 
 	var os = require('os');
-	var fs = require('fs');
-	var contents = fs.readFileSync(config.specificationFilePath).toString();
+	var fse = require('fs-extra');
+	const path = require('path');
+
+	//Load config file.
+	if(!!targetPath)
+		targetPath = path.resolve(targetPath);
+	else
+		targetPath = path.resolve(".");
+
+	var configFile = path.resolve(targetPath, ".amola");
+	var config = JSON.parse(fse.readFileSync(configFile));
 	
+	var outputPath = path.resolve(targetPath, config.output);
+	var templatesPath = path.resolve(targetPath, config.template);
+	var specificationPath = path.resolve(targetPath, config.spec);
+	var intermediateFilePath = path.resolve(targetPath, config.intermediate);
+	
+	console.log( "config file:", configFile);
+	console.log( "output path:", outputPath);
+	console.log( "template file path:", templatesPath);
+	console.log( "specification path:", specificationPath);
+	console.log( "intermediate file path:", intermediateFilePath);
+	
+	
+	var contents = fse.readFileSync(specificationPath).toString();
+
 	var lines = contents.split(os.EOL);
 	var curTable = "";
 	var curGrade = "";
@@ -34,7 +36,7 @@ module.exports = function( config ) {
 	var showError = "false";
 	var onSuccess = "";
 	var comment = "";
-
+	
 	//Convert each line into blueprint object
 	lines = lines.map(function(e) { 
 
@@ -80,7 +82,6 @@ module.exports = function( config ) {
 
 			if(!tokens[0])
 				return null;
-
 			
 			return {
 				dbConnectCode:dbConnectCode,
@@ -95,12 +96,11 @@ module.exports = function( config ) {
 			};	
 		}
 	}); //End of lines.map
-	
-	//Filter out empty lines;
+
+	//Remove empty lines
 	lines = lines.filter(function(e){
 		return e != null;
 	});
-
 
 	//Get api name from php file name
 	lines = lines.map(function(e){ 
@@ -109,7 +109,7 @@ module.exports = function( config ) {
 		e.ext = tokens[1];
 		return e;
 	})
-	
+
 	//Get CRUD Operation type
 	lines = lines.map(function(e){ 
 		var tokens = e.apiName.split("_");
@@ -167,19 +167,14 @@ module.exports = function( config ) {
 
 		return e;
 	}); //End of getting parameter information.
+	
+	fse.writeFileSync(intermediateFilePath, JSON.stringify(lines, null, 4));
 
-
-	if(!!config.intermediateFilePath)
-		fs.writeFileSync(config.intermediateFilePath, JSON.stringify(lines, null, 4));
-
-
-
-	var templates = config.templates;
-	templates["c"] = fs.readFileSync('templates/c.php').toString();
-	templates["r"] = fs.readFileSync('templates/r.php').toString();
-	templates["u"] = fs.readFileSync('templates/u.php').toString();
-	templates["d"] = fs.readFileSync('templates/d.php').toString();
-
+	var templates = {};
+	templates["c"] = fse.readFileSync(path.resolve(templatesPath, 'c.php')).toString();
+	templates["r"] = fse.readFileSync(path.resolve(templatesPath, 'r.php')).toString();
+	templates["u"] = fse.readFileSync(path.resolve(templatesPath, 'u.php')).toString();
+	templates["d"] = fse.readFileSync(path.resolve(templatesPath, 'd.php')).toString();
 
 	for(var k in lines) {
 
@@ -310,9 +305,10 @@ module.exports = function( config ) {
 			break;
 		
 		}
-
-		var fileName = config.outputPath  + info.phpFileName;
-		//console.log("generated: ", fileName);
-		fs.writeFileSync(fileName, text);
+		var generatedFilePath = path.resolve(outputPath, info.phpFileName);
+		console.log("Generate: ", generatedFilePath);
+		fse.writeFileSync(generatedFilePath, text);
 	}
+
+	console.log("successfully done");
 }

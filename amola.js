@@ -13,7 +13,7 @@ argv.mod({
 		"Generate CRUD codes via settings on .amola file.",
 		"Example:",
 		"\t amola run",
-		"\t amola run /path/of/.amola/file"
+		"\t amola run /target/project/path"
 	].join(os.EOL),
 	options:[]
 });
@@ -46,20 +46,25 @@ argv.mod({
 			type:"path",
 			description:"The path of the files to be generated. Default: './gen'",
 			example:"'amola init --output=VALUE' or 'amola -o VALUE'"
+		},{
+			name:"intermediate",
+			short:"im",
+			type:"path",
+			description:"The path of the intermediate file to be generated. Default: './gen/intermediate.json'",
+			example:"'amola init --intermediate=VALUE' or 'amola -im VALUE'"
 		}
 	]
 })
 
 var args = argv.run();
 
+//console.log(args);
+if(args.targets.length == 0)
+	args.targets.push(".");
 
 switch(args.mod){
 	case "init":
 		var amola_init = require("./amola_init");
-		
-		if(args.targets.length == 0)
-			args.targets.push(".");
-
 		for(var k in args.targets){
 			amola_init(args.options, args.targets[k]);
 		}
@@ -67,7 +72,12 @@ switch(args.mod){
 	break;
 	case "run":
 		var amola_run = require("./amola_run");
-		amola_run();
+		for(var k in args.targets){
+			amola_run(args.targets[k]);
+		}
+	break;
+	default:
+		console.log("mode required. check out amola -h");
 	break;
 }
 

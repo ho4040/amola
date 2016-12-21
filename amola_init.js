@@ -17,17 +17,24 @@ module.exports = function( options, targetPath ) {
 		if(!options.output)
 			options.output = './gen';
 		
+		if(!options.intermediate)
+			options.intermediate = "./gen/intermediate.json";
+
+		console.log(JSON.stringify(options));
+
 
 		var configPath = path.resolve(targetPath, "./.amola");
 		var specPath = path.resolve(targetPath, options.spec);
 		var templatePath = path.resolve(targetPath, options.template );
 		var outputPath = path.resolve(targetPath, options.output);
-
+		var intermediateFilePath = path.resolve(targetPath, options.intermediate);
 		
 		console.log("Target path : ", targetPath);
 		console.log("Specification file path : ", specPath);
 		console.log("Template directory path : ", templatePath);
 		console.log("Ouput directory path : ", outputPath);
+		console.log("Intermediate file path : ", intermediateFilePath);
+
 		
 		if(fse.existsSync(targetPath) === false){
 			fse.mkdirSync(targetPath);
