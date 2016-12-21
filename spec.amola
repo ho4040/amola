@@ -1,0 +1,44 @@
+################################################################################################
+#			 							AMOLA SPECIFICATION 
+################################################################################################
+# 1. File name should be start with 'get_' | 'update_' | 'add_' | 'remove_' 
+# 2. Avaliable parameter types
+#		<int>
+#		<boolean>
+#		<string>
+#		<datetime>
+#		<now>
+#		<password>
+# 3. These 'modifiers' can be attached to type.
+# 	'*' : required parameter 
+# 	'@' : menase parameter that is used in search condtion
+# 4. State can be change. it maintain until change again.
+# 	auth:true|false			# Indicate API requires authentication process. if it's True, then call 'auth' function to check session
+# 	grade:2					# Authority level that used for authentication process
+# 	connect:...				# Code to set '$conn' variable.
+#	table:...				# CRUD target table name
+#	showError:true|false	# Whether or not show PHP errors
+#	onSuccess:... 			# PHP code that is executed when API successfully complete.
+################################################################################################
+
+
+################################################################################################
+# EXAMPLE 
+################################################################################################
+# 	Read rows from `users` table by `userId` or `email` fields
+#		table:users
+#		get_userInformations.php?userId=<int@>&email=<string@>
+# 	Update 'price' field' of 'sales' table by customer's name
+#		table:sales
+#		update_sales.php?customer_name=<string*@>&price=<int>, 	
+#	
+################################################################################################
+
+
+auth:false
+showError:false
+grade:0
+connect:$conn = getDb();
+
+table:users
+get_userInfo.php?user_id=<int*@>
