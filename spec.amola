@@ -13,14 +13,13 @@
 # 	'*' : required parameter 
 # 	'@' : menase parameter that is used in search condtion
 # 4. State can be change. it maintain until change again.
-# 	auth:true|false			# Indicate API requires authentication process. if it's True, then call 'auth' function to check session
+# 	auth:true|false			# Indicate API requires authentication process.
 # 	grade:2					# Authority level that used for authentication process
 # 	connect:...				# Code to set '$conn' variable.
 #	table:...				# CRUD target table name
 #	showError:true|false	# Whether or not show PHP errors
 #	onSuccess:... 			# PHP code that is executed when API successfully complete.
 ################################################################################################
-
 
 ################################################################################################
 # EXAMPLE 
@@ -33,7 +32,6 @@
 #		update_sales.php?customer_name=<string*@>&price=<int>, 	
 #	
 ################################################################################################
-
 
 auth:false
 showError:false
