@@ -6,7 +6,7 @@ CLI tool for generate CRUD code written in Nodejs.
 ##INSTALL
 
 ```
-npm install -g amola
+npm install amola
 ```
 
 ---
