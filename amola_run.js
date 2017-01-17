@@ -25,7 +25,6 @@ module.exports = function( targetPath ) {
 	console.log( "specification path:", specificationPath);
 	console.log( "intermediate file path:", intermediateFilePath);
 	
-	
 	var contents = fse.readFileSync(specificationPath).toString();
 
 	var lines = contents.split(os.EOL);

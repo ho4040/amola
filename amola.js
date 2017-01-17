@@ -1,7 +1,7 @@
 var os = require('os');
 var argv = require( 'argv' );
 
-argv.version('v1.0');
+argv.version('v1.0.0');
 argv.info([
 	"Simple CRUD code generator for PHP & MySQL",
 	"Usage: amola <init|run> [options]"
