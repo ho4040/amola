@@ -25,7 +25,7 @@ argv.mod({
 		"'.amola' file will be generated. to target path.",
 		"Example:",
 		"\t amola init",
-		"\t amola init -t './templates' -o './gen' -s './spec.ama' /path/to/initialize"
+		"\t amola init -t './templates' -o './gen' -s './spec.amola' /path/to/initialize"
 	].join(os.EOL),
 	options:[
 		{
