@@ -1,0 +1,25 @@
+{
+  "name": "amola",
+  "version": "1.0.0",
+  "description": "PHP CRUD API code generate with specification.",
+  "main": "amola.js",
+  "dependencies": {
+    "fs-extra": "^1.0.0",
+    "open": "^0.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ho4040/amola.git"
+  },
+  "keywords": ["php", "crud", "code", "swagger", "blueprint"],
+  "author": "Zero Choi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ho4040/amola/issues"
+  },
+  "homepage": "https://github.com/ho4040/amola#readme"
+}
