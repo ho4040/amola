@@ -6,3 +6,10 @@ CLI tool for generate CRUD code written in Nodejs.
 
 * PHP code generate part
 * Documentation
+
+
+##INSTALL
+
+```
+npm install amola --save
+```
