@@ -70,4 +70,4 @@ amola run
 
 * Add test unit
 * API Document HTML build
-* .amola spec change as Array. for now it's Object.
+* `.amola` should be change as Array.
