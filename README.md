@@ -51,7 +51,7 @@ amola run
 
 # Update 'price' field' of 'sales' table by customer's name
 	table:sales
-	update_sales.php?customer_name=<string*@>&price=<int>, 	
+	update_sales.php?customer_name=<string*@>&price=<int>
 ```
 
 
