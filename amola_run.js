@@ -187,9 +187,9 @@ module.exports = function( targetPath ) {
 			
 			paramGetContext = info.params.filter(function(e){ return !e.isConstant }).map(function(paramInfo){
 				if(!paramInfo.isSessionVar)
-					return "if(array_key_exists('"+paramInfo.name+"',$_REQUEST))	$"+paramInfo.name+" = $_REQUEST[\""+paramInfo.name+"\"];";
+					return "if(checkParamExist('"+paramInfo.name+"'))	$"+paramInfo.name+" = getParam(\""+paramInfo.name+"\");";
 				else
-					return "if(array_key_exists('"+paramInfo.isSessionVar+"',$_SESSION['user']))	$"+paramInfo.name+" = $_REQUEST[\""+paramInfo.name+"\"]" + " = $_SESSION[\'user\'][\""+paramInfo.isSessionVar+"\"];";
+					return "if(checkSessionExist('"+paramInfo.isSessionVar+"','"+paramInfo.name+"'))	$"+paramInfo.name+" = getSession(\""+paramInfo.name+"\");";
 			}).join("\n\t\t");
 
 			paramCheckContext = info.params.filter(function(e){ return e.required && !e.isConstant; }).map(function(paramInfo){
