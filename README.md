@@ -1,10 +1,10 @@
-#AMOLA
+# AMOLA
 
 CLI Tool to making CRUD API code automatically with specification file.
 
 Just write down 'URL like API spec' and run, then you can get API codes.
 
-##INSTALL
+## INSTALL
 
 ```
 npm install -g amola
@@ -13,7 +13,7 @@ npm install -g amola
 ---
 
 
-##USAGE
+## USAGE
 
 ### Start project
 
@@ -55,7 +55,7 @@ amola run
 ```
 
 
-##EXTRA INFO
+## EXTRA INFO
 
 
 ### build system setting - Sublime text
@@ -66,7 +66,7 @@ amola run
 
 ---
 
-##TODO
+## TODO
 
 * Add test unit
 * API Document HTML build
