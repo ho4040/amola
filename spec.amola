@@ -34,9 +34,9 @@
 ################################################################################################
 
 auth:false
-showError:false
-grade:0
-connect:$conn = getDb();
 
 table:users
 get_userInfo.php?user_id=<int*@>
+add_user.php?user_id=<int*>&age=<int>&name=<string*>&email=<string>&created_at=<now>
+update_user.php?user_id=<int@$>&name=<string>&email=<string>
+remove_user.php?user_id=<int@$>
