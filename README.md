@@ -21,10 +21,10 @@ Initialize default setting at current path.
 
 `.amola` file will be generated. that contains configurations.
 
-you can get more information with `-h` option.
 
-```
-amola init
+
+```bash
+$ amola init
 ```
 
 
@@ -32,11 +32,13 @@ amola init
 
 Generate codes with specification file `spec.amola`. the codes will be generated in `gen` folder.
 
-you can get more information with `-h` option.
 
+
+```bash
+$ amola run
 ```
-amola run
-```
+
+you can get more information with `-h` option.
 
 ---
 
