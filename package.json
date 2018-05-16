@@ -1,6 +1,6 @@
 {
   "name": "amola",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "CLI tool for CRUD API code generation with specification.",
   "preferGlobal": true,
   "bin": {
@@ -27,7 +27,7 @@
     "blueprint"
   ],
   "author": "Zero Choi",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ho4040/amola/issues"
   },
