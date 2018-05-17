@@ -1,6 +1,6 @@
 {
   "name": "amola",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "CLI tool for CRUD API code generation with specification.",
   "preferGlobal": true,
   "bin": {
